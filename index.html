@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML5 空污分佈內插工具</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>空污 (PM 2.5) 空間內插視覺化工具</h1>
+    </header>
+    <main class="container">
+        <section class="controls">
+            <h2>控制面板</h2>
+            <div class="input-group">
+                <label for="x-coord">X 座標:</label>
+                <input type="number" id="x-coord" placeholder="例如: 10">
+            </div>
+            <div class="input-group">
+                <label for="y-coord">Y 座標:</label>
+                <input type="number" id="y-coord" placeholder="例如: 25">
+            </div>
+            <div class="input-group">
+                <label for="pm25-value">PM 2.5 數值:</label>
+                <input type="number" id="pm25-value" placeholder="例如: 42.5">
+            </div>
+            <button id="add-sensor-btn">新增偵測點</button>
+
+            <h3>已新增偵測點 (<span id="sensor-count">0</span>)</h3>
+            <ul id="sensor-list">
+                </ul>
+
+            <hr>
+
+            <div class="input-group">
+                <label for="algo-select">選擇內插演算法:</label>
+                <select id="algo-select">
+                    <option value="LINEAR">線性差補 (Linear)</option>
+					<option value="IDW">反距離加權 (IDW)</option>
+                    <option value="Kriging">克里金法 (Kriging)</option>
+                </select>
+            </div>
+            <button id="generate-map-btn" disabled>產生空污分佈圖</button>
+            <p id="status-message"></p> </section>
+
+        <section class="visualization">
+            <canvas id="main-canvas" width="600" height="600"></canvas>
+            <div id="colorbar-container"></div>
+        </section>
+     </main>
+
+    <script src="kriging.js"></script>
+    
+    <script src="app.js"></script>
+</body>
+</html>
